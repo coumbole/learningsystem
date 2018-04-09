@@ -12,4 +12,12 @@ public class Teacher {
 
     private String password, name, email, role;
 
+    public Teacher(String code, String pwd, String name, String email, String role) {
+        this.code = code;
+        this.password = pwd;
+        this.name = name;
+        this.email = email;
+        this.role = role;
+    }
+
 }
