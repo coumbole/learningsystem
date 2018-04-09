@@ -13,7 +13,7 @@ import java.util.Date;
 public class Course
 {
     @Id
-    private String course_code;
+    private String courseCode;
 
     private String name;
     private int credit;
@@ -22,13 +22,36 @@ public class Course
     private Teacher teacher;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date start_time;
+    private Date startTime;
+
+    public Course() {}
 
     public Course(String code, String name, int credit, Teacher teacher, Date start) {
-        this.course_code = code;
+        this.courseCode = code;
         this.name = name;
         this.credit = credit;
         this.teacher = teacher;
-        this.start_time = start;
+        this.startTime = start;
+    }
+
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCredit() {
+        return credit;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public Date getStartTime() {
+        return startTime;
     }
 }
