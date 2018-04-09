@@ -17,6 +17,10 @@ public class Course
 
     private String name;
     private int credit;
+
+    @ManyToOne
     private Teacher teacher;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date start_time;
 }
