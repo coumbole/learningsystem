@@ -23,4 +23,12 @@ public class Course
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date start_time;
+
+    public Course(String code, String name, int credit, Teacher teacher, Date start) {
+        this.course_code = code;
+        this.name = name;
+        this.credit = credit;
+        this.teacher = teacher;
+        this.start_time = start;
+    }
 }

@@ -12,4 +12,11 @@ public class Student {
 
     private String password, name, email;
 
+    public Student(String code, String pwd, String name, String email) {
+        this.code = code;
+        this.password = pwd;
+        this.name = name;
+        this.email = email;
+    }
+
 }
