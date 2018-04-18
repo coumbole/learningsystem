@@ -1,6 +1,5 @@
 package org.kumpulainen.learningsystem;
 
-import javax.persistence.Id;
 import java.util.logging.Logger;
 
 public class User {
@@ -9,33 +8,32 @@ public class User {
 
     private Hasher hasher = new Hasher(8);
 
-    private String code;
-
-    private String password, name, email;
+    private String code, password, name, email;
 
     public User() {}
 
-    // TODO: Hash password
     public User(String code, String pwd, String name, String email) {
         this.code = code;
         this.password = hasher.hash(pwd);
-        logger.info(String.format("Hashed pwd %s as %s", pwd, this.password));
-        logger.info(String.format("Verifying pwd: %s: %s", pwd, hasher.verifyHash(pwd, this.password)));
-        logger.info(String.format("Verifying wrong pwd: %s: %s", "abcde", Boolean.toString(hasher.verifyHash("abcde", this.password))));
         this.name = name;
         this.email = email;
+        logger.info("Created a user with code: " + this.code);
     }
 
     public String getCode() {
-        return code;
+        return this.code;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
+    }
+
+    public boolean login(String password) {
+        return hasher.verifyHash(password, this.password);
     }
 
 }

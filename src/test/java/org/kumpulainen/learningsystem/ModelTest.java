@@ -96,4 +96,9 @@ public class ModelTest
     public void testResult() {
         assertTrue(r1.getGrade() == 5);
     }
+
+    public void testLogin() {
+        assertTrue(s1.login("hunter2"));
+        assertFalse(t1.login("abcdefg"));
+    }
 }

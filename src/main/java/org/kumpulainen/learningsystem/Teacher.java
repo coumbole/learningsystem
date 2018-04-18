@@ -35,11 +35,6 @@ public class Teacher extends User {
     }
 
 
-    // TODO
-    public boolean login(String username, String password) {
-        return true;
-    }
-
     /* TODO:
      *  1. Implement validations
      *  2. Allow creating a course for another teacher
