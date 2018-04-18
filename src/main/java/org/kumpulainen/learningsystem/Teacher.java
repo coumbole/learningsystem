@@ -21,7 +21,8 @@ public class Teacher {
     @Id
     private String code;
 
-    private String password, name, email, role;
+    private String password, name, email;
+    private Role role;
 
     private EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("learningsystem");
     private EntityManager entityManager = emFactory.createEntityManager();
@@ -30,7 +31,7 @@ public class Teacher {
 
     public Teacher() {}
 
-    public Teacher(String code, String pwd, String name, String email, String role) {
+    public Teacher(String code, String pwd, String name, String email, Role role) {
         this.code = code;
         this.password = pwd;
         this.name = name;
@@ -53,7 +54,7 @@ public class Teacher {
         return email;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
