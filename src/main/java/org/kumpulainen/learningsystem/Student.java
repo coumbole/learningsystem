@@ -6,39 +6,22 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "student")
-public class Student {
-    @Id
-    private String code;
+public class Student extends User {
 
-    private String password, name, email;
+    @Id
+    private String id;
 
     public Student() {}
 
-    // TODO: Hash password
     public Student(String code, String pwd, String name, String email) {
-        this.code = code;
-        this.password = pwd;
-        this.name = name;
-        this.email = email;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
+        super(code, pwd, name, email);
     }
 
     @Override
     public String toString() {
-        return String.format("Student: %s, %s, %s",
-                                this.getName(),
-                                this.getCode(),
-                                this.getEmail());
+        return String.format("Student(%s, %s, %s)",
+                this.getCode(),
+                        this.getName(),
+                        this.getEmail());
     }
 }

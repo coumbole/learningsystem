@@ -14,7 +14,7 @@
             <property name="javax.persistence.jdbc.user" value="learning" />
             <property name="javax.persistence.jdbc.password" value="FsoN7e9UTI3EpzrjzXz1oqD3Y" />
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-            <property name="eclipselink.logging.level" value="INFO" />
+            <property name="eclipselink.logging.level" value="WARNING" />
             <property name="eclipselink.ddl-generation" value="create-tables" />
         </properties>
 

@@ -1,11 +1,6 @@
 package org.kumpulainen.learningsystem;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.Persistence;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -17,41 +12,22 @@ import java.util.List;
 
 @Entity
 @Table(name = "teacher")
-public class Teacher {
-    @Id
-    private String code;
+public class Teacher extends User {
 
-    private String password, name, email;
+    @Id
+    private String id;
+
     private Role role;
 
     private EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("learningsystem");
     private EntityManager entityManager = emFactory.createEntityManager();
     private CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 
-
     public Teacher() {}
 
     public Teacher(String code, String pwd, String name, String email, Role role) {
-        this.code = code;
-        this.password = pwd;
-        this.name = name;
-        this.email = email;
+        super(code, pwd, name, email);
         this.role = role;
-
-
-
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public Role getRole() {
