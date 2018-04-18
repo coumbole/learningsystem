@@ -13,7 +13,7 @@ import java.util.Date;
 public class Course
 {
     @Id
-    private String courseCode;
+    private String code;
 
     private String name;
     private int credit;
@@ -27,7 +27,7 @@ public class Course
     public Course() {}
 
     public Course(String code, String name, int credit, Teacher teacher, Date start) {
-        this.courseCode = code;
+        this.code = code;
         this.name = name;
         this.credit = credit;
         this.teacher = teacher;
@@ -35,8 +35,8 @@ public class Course
     }
 
 
-    public String getCourseCode() {
-        return courseCode;
+    public String getCode() {
+        return code;
     }
 
     public String getName() {

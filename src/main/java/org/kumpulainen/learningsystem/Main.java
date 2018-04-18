@@ -10,7 +10,23 @@ public class Main {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("learningsystem");
         EntityManager em = emf.createEntityManager();
 
-        System.out.print("EntityManager is open: " + em.isOpen());
+        Student student = new Student(
+                "abc123",
+                "hunter2",
+                "Test Dude",
+                "test.dude@school.edu");
+
+        System.out.println("Created: " + student.toString());
+
+        try {
+            em.getTransaction().begin();
+            em.persist(student);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
+        }
 
         System.exit(0);
     }

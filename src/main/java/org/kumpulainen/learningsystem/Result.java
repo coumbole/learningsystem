@@ -13,9 +13,13 @@ public class Result {
 
     public Result() {}
 
-    public Result(String studentId, String courseCode, int grade) {
-        this.id = new ResultId(studentId, courseCode);
+    public Result(ResultId rid, int grade) {
+        this.id = rid;
         this.grade = grade;
+    }
+
+    public ResultId getId() {
+        return id;
     }
 
 

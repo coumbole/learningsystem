@@ -14,6 +14,7 @@ public class Student {
 
     public Student() {}
 
+    // TODO: Hash password
     public Student(String code, String pwd, String name, String email) {
         this.code = code;
         this.password = pwd;
@@ -31,5 +32,13 @@ public class Student {
 
     public String getEmail() {
         return email;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Student: %s, %s, %s",
+                                this.getName(),
+                                this.getCode(),
+                                this.getEmail());
     }
 }
