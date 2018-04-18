@@ -1,4 +1,6 @@
-persistence.xml
+# Not sure about this, not providing it for VCS prevents automatic builds from running, not sure how to fetch
+# credentials from somewhere else. TODO!!
+#persistence.xml
 
 # Created by https://www.gitignore.io/api/java,maven,intellij
 

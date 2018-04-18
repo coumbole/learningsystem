@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+    <persistence-unit name="learningsystem" transaction-type="RESOURCE_LOCAL">
+        <class>org.kumpulainen.learningsystem.Course</class>
+        <class>org.kumpulainen.learningsystem.Course_</class>
+        <class>org.kumpulainen.learningsystem.Result</class>
+        <class>org.kumpulainen.learningsystem.Result_</class>
+        <class>org.kumpulainen.learningsystem.Student</class>
+        <class>org.kumpulainen.learningsystem.Teacher</class>
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/learningsystem" />
+            <property name="javax.persistence.jdbc.user" value="learning" />
+            <property name="javax.persistence.jdbc.password" value="FsoN7e9UTI3EpzrjzXz1oqD3Y" />
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+            <property name="eclipselink.logging.level" value="INFO" />
+            <property name="eclipselink.ddl-generation" value="create-tables" />
+        </properties>
+
+    </persistence-unit>
+</persistence>
+
+
