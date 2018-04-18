@@ -1,9 +1,17 @@
 language: java
 
+
+env:
+  global:
+    - PGPORT=5432
+    - PGHOST=localhost
+
 before_script:
-    - psql -c 'create role learning with password FsoN7e9UTI3EpzrjzXz1oqD3Y;'
-    - psql -c 'create database learningsystem;' -U postgres
-    - psql -c 'grant all privileges on database learningsystem to learning' -U postgres
+    - psql --version
+    - psql -c "CREATE ROLE learning WITH LOGIN PASSWORD 'FsoN7e9UTI3EpzrjzXz1oqD3Y';" -U postgres
+    - psql -c "create database learningsystem owner learning;" -U postgres
+    - psql -c "grant all on database learningsystem to learning" -U postgres
+    - psql -c "grant usage on schema public to learning" -U postgres
 
 service:
     - postgresql
