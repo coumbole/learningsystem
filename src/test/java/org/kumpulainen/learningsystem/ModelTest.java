@@ -75,7 +75,7 @@ public class ModelTest
         assertTrue(s1.getEmail().equals("test.dude@school.edu"));
     }
 
-    public void testTeacer() {
+    public void testTeacher() {
         assertTrue(t1.getCode().equals("xyz456"));
         assertTrue(t1.getName().equals("Test Teacher"));
         assertTrue(t1.getEmail().equals("test.teacher@school.edu"));

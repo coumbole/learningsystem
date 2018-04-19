@@ -22,7 +22,7 @@ public class Course
     private Teacher teacher;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date startTime;
+    private Date start_time;
 
     public Course() {}
 
@@ -31,7 +31,7 @@ public class Course
         this.name = name;
         this.credit = credit;
         this.teacher = teacher;
-        this.startTime = start;
+        this.start_time = start;
     }
 
 
@@ -52,6 +52,16 @@ public class Course
     }
 
     public Date getStartTime() {
-        return startTime;
+        return start_time;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Course(%s, %s, %d, %s, %s)",
+                this.getCode(),
+                this.getName(),
+                this.getCredit(),
+                this.getTeacher().toString(),
+                this.getStartTime().toString());
     }
 }
