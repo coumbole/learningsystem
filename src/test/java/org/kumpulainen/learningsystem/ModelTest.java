@@ -3,8 +3,6 @@ package org.kumpulainen.learningsystem;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.kumpulainen.learningsystem.Role;
-
 import java.util.Date;
 
 /**
@@ -73,6 +71,7 @@ public class ModelTest
         assertTrue(s1.getCode().equals("abc123"));
         assertTrue(s1.getName().equals("Test Dude"));
         assertTrue(s1.getEmail().equals("test.dude@school.edu"));
+        assertTrue(s1.getCourses().isEmpty());
     }
 
     public void testTeacher() {
@@ -87,6 +86,7 @@ public class ModelTest
         assertTrue(c1.getCredit() == 5);
         assertTrue(c1.getTeacher().equals(t1));
         assertTrue(c1.getStartTime().equals(st));
+        assertTrue(c1.getStudents().isEmpty());
     }
 
     public void testResultId() {
@@ -101,4 +101,25 @@ public class ModelTest
         assertTrue(s1.login("hunter2"));
         assertFalse(t1.login("abcdefg"));
     }
+
+    public void testAddStudentToCourse() {
+        System.out.println("Student: " + s1.toString());
+        c1.addStudent(s1);
+        assertTrue(c1.getStudents().size() == 1);
+        c1.removeStudent(s1);
+        assertTrue(c1.getStudents().isEmpty());
+
+        s1.takeCourse(c1);
+        assertTrue(s1.getCourses().size() == 1);
+        assertTrue(s1.getCourses().contains(c1));
+        s1.leaveCourse(c1);
+        assertTrue(s1.getCourses().isEmpty());
+    }
+
+    public void testTakenCredits() {
+        assertTrue(s1.takenCredits() == 0);
+        s1.takeCourse(c1);
+        assertTrue(s1.takenCredits() == 5);
+    }
+
 }

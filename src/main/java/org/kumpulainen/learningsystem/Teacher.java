@@ -1,14 +1,8 @@
 package org.kumpulainen.learningsystem;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import javax.persistence.criteria.Path;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 
 
 @Entity
@@ -83,33 +77,39 @@ public class Teacher extends User implements Serializable {
         return false;
     }
 
-    /*
-     * TODO:
-     *  1. Actually query the input coursecode instead of all courses
-     *  2. Implement validations for changes
-     *  3. Implement mutation
-     *
+    /**
      * @param courseCode    - the course id, used to fetch the course object from the DB
      * @param field         - the db field that will be mutated
      * @param value         - the new value for the field determined above
      * @return              - the mutated course object if successfull, the rollbacked old course object if not
      */
-    /*
     public void updateCourse(String courseCode, String field, String value) {
 
-        CriteriaQuery<String> courseQuery = this.builder.createQuery(String.class);
-        Root<Course> course = courseQuery.from(Course.class);
-        Path<String> queryCourseCode = course.get("courseCode");
-        courseQuery.select(queryCourseCode);
-        courseQuery.orderBy(this.builder.asc(queryCourseCode));
-        List<String> result = this.entityManager.createQuery(courseQuery).getResultList();
-        System.out.println("Course found:");
-        Iterator resultIter = result.iterator();
-        while (resultIter.hasNext()) {
-            System.out.println(resultIter.next());
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("learningsystem");
+        EntityManager entityManager = emFactory.createEntityManager();
+        Course course = entityManager.find(Course.class, courseCode);
+        logger.info(course.toString());
+        entityManager.getTransaction().begin();
+        switch (field) {
+            case "credit":
+                course.setCredit(Integer.parseInt(value));
+                break;
+            case "name":
+                course.setName(value);
+                break;
+            case "teacher":
+                course.setTeacher(entityManager.find(Teacher.class, value));
+                break;
+            case "startTime":
+                course.setStartTime(Utils.parseDate(value));
+                break;
+            default:
+                logger.info(String.format("Field %s didn't match, nothing updated.", field));
+                break;
         }
+        entityManager.getTransaction().commit();
+        logger.info(String.format("The %s of course %s was updated to %s", field, course.getCode(), value));
     }
-    */
 
 
     @Override

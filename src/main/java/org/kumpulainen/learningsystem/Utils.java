@@ -1,5 +1,8 @@
 package org.kumpulainen.learningsystem;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -29,5 +32,17 @@ public class Utils {
             return false;
         }
         return true;
+    }
+
+    public static Date parseDate(String dateString) {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        try {
+            date = df.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            System.exit(-1);
+        }
+        return date;
     }
 }

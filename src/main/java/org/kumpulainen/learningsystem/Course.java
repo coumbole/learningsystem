@@ -2,11 +2,9 @@ package org.kumpulainen.learningsystem;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-/**
- * Hello world!
- *
- */
 
 @Entity
 @Table(name = "course")
@@ -21,6 +19,9 @@ public class Course
     @ManyToOne
     private Teacher teacher;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Student> students;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date start_time;
 
@@ -32,6 +33,7 @@ public class Course
         this.credit = credit;
         this.teacher = teacher;
         this.start_time = start;
+        this.students = new HashSet<>();
     }
 
 
@@ -53,6 +55,38 @@ public class Course
 
     public Date getStartTime() {
         return start_time;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setName(String name) {
+        if (name != null && !name.isEmpty()) {
+            this.name = name;
+        }
+    }
+
+    public void setCredit(int credit) {
+        if (credit > 0 && credit <= 8) {
+            this.credit = credit;
+        }
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public void setStartTime(Date start_time) {
+        this.start_time = start_time;
+    }
+
+    public void addStudent(Student student) {
+        this.students.add(student);
+    }
+
+    public void removeStudent(Student student) {
+        this.students.remove(student);
     }
 
     @Override

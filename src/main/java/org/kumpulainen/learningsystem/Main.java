@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.logging.Logger;
 
 public class Main {
@@ -18,10 +19,10 @@ public class Main {
         EntityManager em = emf.createEntityManager();
 
         Student student = new Student(
-                "abc" + Long.toString(System.currentTimeMillis() % 1000),
+                "abc" + Long.toString(System.currentTimeMillis() & 1000),
                 "hunter2",
-                "Test Dude",
-                "test.dude@school.edu");
+                "Test Student",
+                "test.student@school.edu");
 
         Teacher teacher = new Teacher(
                 "xyz" + Long.toString(System.currentTimeMillis() % 1000),
@@ -37,16 +38,14 @@ public class Main {
                 teacher,
                 new Date());
 
-        ResultId rid = new ResultId(student.getCode(), course.getCode());
-
-        Result res = new Result(rid, 5);
 
         try {
             em.getTransaction().begin();
             em.persist(student);
+            student.takeCourse(course);
             em.persist(teacher);
             em.persist(course);
-            em.persist(res);
+            course.addStudent(student);
             em.getTransaction().commit();
         } catch (Exception e) {
             logger.severe("Error: " + e.getMessage());
@@ -54,15 +53,21 @@ public class Main {
             System.exit(1);
         }
 
+        Iterator i = student.getCourses().iterator();
+        if (i.hasNext()) {
+            logger.info("First taken course: " + i.next());
+        }
+
+        Iterator a = course.getStudents().iterator();
+        if (a.hasNext()) {
+            logger.info("Course " + course.getCode() + " has student: " + a.next());
+        }
+
         try {
             Calendar cal = Calendar.getInstance();
             cal.setTime(new Date());
             cal.add(Calendar.MONTH, 1);
-            teacher.createCourse(
-                    "FFXX-5" + Long.toString(System.currentTimeMillis() % 1000),
-                    "Buzzy buzz course",
-                    3,
-                    cal.getTime());
+            teacher.updateCourse(course.getCode(), "name", "pWn3d");
         } catch (Exception e) {
             logger.severe("Error: " + e.getMessage());
             e.printStackTrace();
