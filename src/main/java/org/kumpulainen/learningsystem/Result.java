@@ -22,7 +22,6 @@ public class Result {
         return id;
     }
 
-
     public int getGrade() {
         return grade;
     }
@@ -31,7 +30,6 @@ public class Result {
     public String toString() {
         return String.format("Result(Student %s, Course %s, grade %d)", id.getStudentId(), id.getCourseId(), grade);
     }
-
 }
 
 

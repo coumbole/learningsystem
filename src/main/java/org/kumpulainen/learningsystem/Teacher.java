@@ -46,11 +46,9 @@ public class Teacher extends User implements Serializable {
         return this.hasher.verifyHash(password, this.password);
     }
 
-
     public Role getRole() {
         return role;
     }
-
 
     public boolean createCourse(String courseCode, String name, int credits, Date startTime) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("learningsystem");
@@ -89,7 +87,6 @@ public class Teacher extends User implements Serializable {
         EntityManager entityManager = emFactory.createEntityManager();
         Course course = entityManager.find(Course.class, courseCode);
         logger.info(course.toString());
-        entityManager.getTransaction().begin();
         switch (field) {
             case "credit":
                 course.setCredit(Integer.parseInt(value));
@@ -107,6 +104,8 @@ public class Teacher extends User implements Serializable {
                 logger.info(String.format("Field %s didn't match, nothing updated.", field));
                 break;
         }
+        entityManager.getTransaction().begin();
+        entityManager.persist(course);
         entityManager.getTransaction().commit();
         logger.info(String.format("The %s of course %s was updated to %s", field, course.getCode(), value));
     }
@@ -139,5 +138,4 @@ public class Teacher extends User implements Serializable {
                 this.getCode(),
                 this.getRole());
     }
-
 }

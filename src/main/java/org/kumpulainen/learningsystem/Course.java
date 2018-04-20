@@ -36,7 +36,6 @@ public class Course
         this.students = new HashSet<>();
     }
 
-
     public String getCode() {
         return code;
     }
