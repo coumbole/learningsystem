@@ -19,5 +19,13 @@ public class ResultId implements Serializable {
         this.studentId = studentId;
         this.courseId = courseCode;
     }
+
+    public String getStudentId() {
+        return this.studentId;
+    }
+
+    public String getCourseId() {
+        return this.courseId;
+    }
 }
 

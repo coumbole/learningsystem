@@ -111,6 +111,25 @@ public class Teacher extends User implements Serializable {
         logger.info(String.format("The %s of course %s was updated to %s", field, course.getCode(), value));
     }
 
+    public void giveGrade(Course course, Student student, int grade) {
+
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("learningsystem");
+        EntityManager entityManager = emFactory.createEntityManager();
+
+        ResultId rid = new ResultId(student.getCode(), course.getCode());
+        Result result = new Result(rid, grade);
+        logger.info(String.format("Teacher %s created a new %s", this.getCode(), result.toString()));
+
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(result);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            logger.severe(String.format("Failed writing result %s to database.", result.toString()));
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
 
     @Override
     public String toString() {

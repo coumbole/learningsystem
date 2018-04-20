@@ -27,6 +27,11 @@ public class Result {
         return grade;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Result(Student %s, Course %s, grade %d)", id.getStudentId(), id.getCourseId(), grade);
+    }
+
 }
 
 

@@ -46,6 +46,7 @@ public class Main {
             em.persist(teacher);
             em.persist(course);
             course.addStudent(student);
+            teacher.giveGrade(course, student, 4);
             em.getTransaction().commit();
         } catch (Exception e) {
             logger.severe("Error: " + e.getMessage());
@@ -62,6 +63,7 @@ public class Main {
         if (a.hasNext()) {
             logger.info("Course " + course.getCode() + " has student: " + a.next());
         }
+
 
         try {
             Calendar cal = Calendar.getInstance();
