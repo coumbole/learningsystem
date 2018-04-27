@@ -27,22 +27,22 @@ public class Teacher extends User implements Serializable {
     }
 
     @Override
-    String getCode() {
+    public String getCode() {
         return this.code;
     }
 
     @Override
-    String getName() {
+    public String getName() {
         return this.name;
     }
 
     @Override
-    String getEmail() {
+    public String getEmail() {
         return this.email;
     }
 
     @Override
-    boolean login(String password) {
+    public boolean login(String password) {
         return this.hasher.verifyHash(password, this.password);
     }
 
